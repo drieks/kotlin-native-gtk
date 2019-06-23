@@ -11,7 +11,7 @@ fun <F : CFunction<*>> g_signal_connect(obj: CPointer<*>, actionName: String, ac
 }
 
 typealias SignalHandler<T> = T.() -> Unit
-class Signal<T : Any, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, name: String, realHandler: CPointer<F>) {
+class Signal<T : Any, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, val name: String, realHandler: CPointer<F>) {
     private var handlers = emptyList<SignalHandler<T>>()
     init {
         g_signal_connect(widgetPtr, name, realHandler, StableRef.create(obj).asCPointer())
@@ -28,13 +28,15 @@ class Signal<T : Any, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj:
         for (handler in handlers) {
             try {
                 obj.handler()
-            } catch(e: Throwable) {}
+            } catch(e: Throwable) {
+                println("SignalHandler.$name.emit error: $e")
+            }
         }
     }
 }
 
 typealias SignalHandler1<T, T1> = T.(T1) -> Unit
-class Signal1<T : Any, T1, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, name: String, realHandler: CPointer<F>) {
+class Signal1<T : Any, T1, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, val name: String, realHandler: CPointer<F>) {
     private var handlers = emptyList<SignalHandler1<T, T1>>()
     init {
         g_signal_connect(widgetPtr, name, realHandler, StableRef.create(obj).asCPointer())
@@ -51,13 +53,15 @@ class Signal1<T : Any, T1, F : CFunction<*>>(widgetPtr: CPointer<*>, private val
         for (handler in handlers) {
             try {
                 obj.handler(p1)
-            } catch(e: Throwable) {}
+            } catch(e: Throwable) {
+                println("SignalHandler1.$name.emit error: $e")
+            }
         }
     }
 }
 
 typealias SignalHandler2<T, T1, T2> = T.(T1, T2) -> Unit
-class Signal2<T : Any, T1, T2, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, name: String, realHandler: CPointer<F>) {
+class Signal2<T : Any, T1, T2, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, val name: String, realHandler: CPointer<F>) {
     private var handlers = emptyList<SignalHandler2<T, T1, T2>>()
     init {
         g_signal_connect(widgetPtr, name, realHandler, StableRef.create(obj).asCPointer())
@@ -74,13 +78,15 @@ class Signal2<T : Any, T1, T2, F : CFunction<*>>(widgetPtr: CPointer<*>, private
         for (handler in handlers) {
             try {
                 obj.handler(p1, p2)
-            } catch(e: Throwable) {}
+            } catch(e: Throwable) {
+                println("SignalHandler2.$name.emit error: $e")
+            }
         }
     }
 }
 
 typealias SignalHandler3<T, T1, T2, T3> = T.(T1, T2, T3) -> Unit
-class Signal3<T : Any, T1, T2, T3, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, name: String, realHandler: CPointer<F>) {
+class Signal3<T : Any, T1, T2, T3, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, val name: String, realHandler: CPointer<F>) {
     private var handlers = emptyList<SignalHandler3<T, T1, T2, T3>>()
     init {
         g_signal_connect(widgetPtr, name, realHandler, StableRef.create(obj).asCPointer())
@@ -97,13 +103,15 @@ class Signal3<T : Any, T1, T2, T3, F : CFunction<*>>(widgetPtr: CPointer<*>, pri
         for (handler in handlers) {
             try {
                 obj.handler(p1, p2, p3)
-            } catch(e: Throwable) {}
+            } catch(e: Throwable) {
+                println("SignalHandler3.$name.emit error: $e")
+            }
         }
     }
 }
 
 typealias SignalHandler4<T, T1, T2, T3, T4> = T.(T1, T2, T3, T4) -> Unit
-class Signal4<T : Any, T1, T2, T3, T4, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, name: String, realHandler: CPointer<F>) {
+class Signal4<T : Any, T1, T2, T3, T4, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, val name: String, realHandler: CPointer<F>) {
     private var handlers = emptyList<SignalHandler4<T, T1, T2, T3, T4>>()
     init {
         g_signal_connect(widgetPtr, name, realHandler, StableRef.create(obj).asCPointer())
@@ -120,13 +128,15 @@ class Signal4<T : Any, T1, T2, T3, T4, F : CFunction<*>>(widgetPtr: CPointer<*>,
         for (handler in handlers) {
             try {
                 obj.handler(p1, p2, p3, p4)
-            } catch(e: Throwable) {}
+            } catch(e: Throwable) {
+                println("SignalHandler4.$name.emit error: $e")
+            }
         }
     }
 }
 
 typealias SignalHandler5<T, T1, T2, T3, T4, T5> = T.(T1, T2, T3, T4, T5) -> Unit
-class Signal5<T : Any, T1, T2, T3, T4, T5, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, name: String, realHandler: CPointer<F>) {
+class Signal5<T : Any, T1, T2, T3, T4, T5, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, val name: String, realHandler: CPointer<F>) {
     private var handlers = emptyList<SignalHandler5<T, T1, T2, T3, T4, T5>>()
     init {
         g_signal_connect(widgetPtr, name, realHandler, StableRef.create(obj).asCPointer())
@@ -143,13 +153,15 @@ class Signal5<T : Any, T1, T2, T3, T4, T5, F : CFunction<*>>(widgetPtr: CPointer
         for (handler in handlers) {
             try {
                 obj.handler(p1, p2, p3, p4, p5)
-            } catch(e: Throwable) {}
+            } catch(e: Throwable) {
+                println("SignalHandler5.$name.emit error: $e")
+            }
         }
     }
 }
 
 typealias SignalHandler6<T, T1, T2, T3, T4, T5, T6> = T.(T1, T2, T3, T4, T5, T6) -> Unit
-class Signal6<T : Any, T1, T2, T3, T4, T5, T6, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, name: String, realHandler: CPointer<F>) {
+class Signal6<T : Any, T1, T2, T3, T4, T5, T6, F : CFunction<*>>(widgetPtr: CPointer<*>, private val obj: T, val name: String, realHandler: CPointer<F>) {
     private var handlers = emptyList<SignalHandler6<T, T1, T2, T3, T4, T5, T6>>()
     init {
         g_signal_connect(widgetPtr, name, realHandler, StableRef.create(obj).asCPointer())
@@ -166,7 +178,9 @@ class Signal6<T : Any, T1, T2, T3, T4, T5, T6, F : CFunction<*>>(widgetPtr: CPoi
         for (handler in handlers) {
             try {
                 obj.handler(p1, p2, p3, p4, p5, p6)
-            } catch(e: Throwable) {}
+            } catch(e: Throwable) {
+                println("SignalHandler6.$name.emit error: $e")
+            }
         }
     }
 }
