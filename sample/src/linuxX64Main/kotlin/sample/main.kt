@@ -48,9 +48,11 @@ private fun Application.mainWindow() {
                 popup = Menu().apply {
                     menuItem {
                         label = "Open"
+                        /*
                         onActivate {
                             //                                FileChooserDialog("Open File", this@createWindow.window, GtkFileChooserAction.GTK_FILE_CHOOSER_ACTION_OPEN, "Open!").show()
                         }
+                        */
                     }
 
                     separatorMenuItem()
@@ -74,16 +76,20 @@ private fun Application.mainWindow() {
                 hbbox {
                     button {
                         label = "Quit"
+                        /*
                         onClicked {
                             println("Quit Kotlin GTK!")
                             this@createWindow.destroy()
                         }
+                        */
                     }
                     button {
                         label = "File Manager"
+                        /*
                         onClicked {
                             fileManager().showAll()
                         }
+                        */
                     }
                 }
 
@@ -150,12 +156,14 @@ private fun Application.mainWindow() {
             actionBar {
                 imageButton("gtk-ok")
                 imageButton("gtk-about") {
+                    /*
                     onClicked {
                         AboutDialog().apply {
                             iconName = "gtk-about"
                             authors = listOf("Victor Kropp", "John Doe")
                         }.show()
                     }
+                    */
                 }
 
                 centerWidget = linkButton("https://jetbrains.com/") {
@@ -166,11 +174,13 @@ private fun Application.mainWindow() {
                     fraction = .56
                     text = "Demo in progress"
                 }
+                /*
                 adjustment.onValueChanged {
                     val fraction = adjustment.value / adjustment.upper
                     progress.fraction = fraction
                     pentry?.progressFraction = fraction
                 }
+                */
             }
         }
 
